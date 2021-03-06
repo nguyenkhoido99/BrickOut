@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breakout</title>
+    <style>
+        body {
+            background: #123456;
+        }
+        
+        .container {
+            width: 900px;
+            height: 600px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #123456;
+        }
+        
+        canvas {
+            background: yellowgreen;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <canvas id="canvas" width="900" height="600"></canvas>
+    </div>
+</body>
+
+<script type="text/javascript" src="components.js"></script>
+<script type="text/javascript" src="object.js"></script>
+<script type="text/javascript" src="paddle.js"></script>
+<script type="text/javascript" src="ball.js"></script>
+<script type="text/javascript" src="brick.js"></script>
+<script type="text/javascript" src="game.js"></script>
+
+</html>
