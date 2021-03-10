@@ -6,7 +6,7 @@ canvas.style.border = "3px solid orangered";
 const PADDEL_WIDTH = 170,
     PADDLE_HEIGHT = 30,
     PADDLE_MARGIN_BOTTOM = 10;
-const MAX_LEVEL = 7;
+const MAX_LEVEL = 6;
 
 let LIFE = 3;
 let SCORE = 0;
@@ -23,8 +23,8 @@ const life = document.getElementById('life');
 
 //GAME START
 function startGame() {
-    if (startBall == false) {
-        context.font = "40px Arialss";
+    if (!startBall) {
+        context.font = "40px Arial";
         context.fillStyle = "Red";
         context.fillText('Space to Start Ball', canvas.width / 2 - 150, canvas.height / 2, 300);
     }
@@ -64,12 +64,12 @@ document.addEventListener('keyup', (evt) => {
 function movePaddle() {
     if (leftArrow && paddle.x > 0) {
         paddle.x -= paddle.dx;
-        if (startBall == false)
+        if (!startBall)
             ball.x -= paddle.dx;
     }
     if (rightArrow && paddle.x + paddle.width < canvas.width) {
         paddle.x += paddle.dx;
-        if (startBall == false)
+        if (!startBall)
             ball.x += paddle.dx;
     }
 }
@@ -83,11 +83,11 @@ const ball = {
     sh: 22,
     x: canvas.width / 2 - 16,
     y: paddle.y - 33,
-    width: 30,
-    height: 30,
-    speed: 7,
-    dx: 6 * (Math.random() * 2 - 1),
-    dy: -6
+    width: 25,
+    height: 25,
+    speed: 6,
+    dx: 5 * (Math.random() * 2 - 1),
+    dy: -5
 };
 
 function drawBall() {
@@ -238,10 +238,17 @@ function ballBrickCollision() {
             let b = bricks[r][c];
             if (b.status) {
                 if (ball.x + ball.width >= b.x && ball.x <= b.x + brick[r].width && ball.y + ball.height >= b.y && ball.y <= b.y + brick[r].height) {
+                    if (ball.x + ball.width / 2 >= b.x + brick[r].width || ball.x + ball.width / 2 <= b.x) {
+                        ball.dy = -ball.dy;
+                        SCORE += SCORE_UNIT;
+                    }
+                    if ((ball.x <= b.x + brick[r].width && ball.x + ball.width > b.x + brick[r].width) || (ball.x + ball.width > b.x && ball.x < b.x)) {
+                        ball.dx = -ball.dx;
+                    }
+                    BALL_BRICKS.play();
                     ball.dy = -ball.dy;
                     b.status = false;
                     score.innerHTML = `SCORE: ${SCORE+=SCORE_UNIT}`;
-                    BALL_BRICKS.play();
                 }
             }
         }
@@ -270,7 +277,7 @@ function levelUp() {
         row++;
         createBricks();
         ball.speed += 0.5;
-        paddle.dx += 0.25;
+        paddle.dx += 0.3;
         setAgainBallPaddle();
         LEVEL++;
         LEVEL_UP.play();

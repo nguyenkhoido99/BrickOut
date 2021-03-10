@@ -28,7 +28,7 @@ const WIN = new Audio();
 WIN.src = "sound/win.mp3";
 
 const BALL_BRICKS = new Audio();
-BALL_BRICKS.src = "sound/brick_hit.mp3";
+BALL_BRICKS.src = "sound/ballbrick.mp3";
 
 const LEVEL_UP = new Audio();
 LEVEL_UP.src = "sound/level-up.mp3";
