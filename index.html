@@ -4,40 +4,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Breakout</title>
+    <title>Break Out</title>
+
     <style>
-        body {
-            background: #123456;
+        body,
+        html {
+            background-image: url("img/background-game.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
         }
         
-        .container {
-            width: 900px;
-            height: 600px;
+        canvas {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background-color: #123456;
         }
         
-        canvas {
-            background: yellowgreen;
-            margin: 0 auto;
+        .score-table {
+            width: 50vw;
+            float: left;
+            padding-left: 18vw;
+            padding-top: 50px;
+        }
+        
+        #score,
+        #level,
+        #life {
+            font-weight: 700;
+            font-size: 25px;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            text-shadow: 2px 2px 2px #ccc;
+        }
+        
+        #life {
+            margin-left: 50%;
+        }
+        
+        .level-table {
+            width: 23vw;
+            float: right;
+            padding-top: 50px;
         }
     </style>
+
 </head>
 
 <body>
-    <div class="container">
-        <canvas id="canvas" width="900" height="600"></canvas>
+    <div class="score-table">
+        <span id="score">SCORE: 0</span>
+        <span id="life">LIFE: 3</span>
     </div>
+    <div class="level-table">
+        <span id="level">LEVEL: 1</span>
+    </div>
+    <canvas id="canvas" width="1100 " height="700 "></canvas>
 </body>
 
-<script type="text/javascript" src="components.js"></script>
-<script type="text/javascript" src="object.js"></script>
-<script type="text/javascript" src="paddle.js"></script>
-<script type="text/javascript" src="ball.js"></script>
-<script type="text/javascript" src="brick.js"></script>
-<script type="text/javascript" src="game.js"></script>
+<script src="components.js "></script>
+<script src="game.js "></script>
 
 </html>
